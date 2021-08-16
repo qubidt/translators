@@ -9,7 +9,7 @@
 	"inRepository": true,
 	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2021-08-16 19:30:29"
+	"lastUpdated": "2021-08-16 20:15:51"
 }
 
 /*
@@ -90,12 +90,13 @@ function scrape(doc, url) {
 	translator.setDocument(doc);
 
 	translator.setHandler('itemDone', function (obj, item) {
-		item.creators = [];
-		let authors = doc.querySelectorAll('[rel="author"] , a[class*="Byline-author"]');
+		const authorSet = new Set();
+		let authors = doc.querySelectorAll('header [rel="author"] , a[class*="Byline-author"]');
 		for (let author of authors) {
-			item.creators.push(authorFix(author.textContent));
+			authorSet.add(author.textContent);
 		}
-		
+		item.creators = [...authorSet].map(x => Zotero.Utilities.cleanAuthor(x, "author"));
+
 		item.publicationTitle = "Reuters";
 		item.tags = attr(doc, 'meta[property$="article:tag"]', 'content')
 			.split(/\s*[/,]\s*/).map(tag => ({ tag }));
@@ -107,24 +108,6 @@ function scrape(doc, url) {
 		trans.itemType = detectWeb(doc);
 		trans.doWeb(doc, url);
 	});
-}
-
-function authorFix(author) {
-	// Sometimes we have "By Author"
-	author = author.replace(/^\s*by/i, '');
-
-	var cleaned = Zotero.Utilities.cleanAuthor(author, "author");
-	// If we have only one name, set the author to one-name mode
-	if (!cleaned.firstName) {
-		cleaned.fieldMode = 1;
-	}
-	else {
-		// We can check for all lower-case and capitalize if necessary
-		// All-uppercase is handled by cleanAuthor
-		cleaned.firstName = (cleaned.firstName == cleaned.firstName.toLowerCase()) ? Zotero.Utilities.capitalizeTitle(cleaned.firstName, true) : cleaned.firstName;
-		cleaned.lastName = (cleaned.lastName == cleaned.lastName.toLowerCase()) ? Zotero.Utilities.capitalizeTitle(cleaned.lastName, true) : cleaned.lastName;
-	}
-	return cleaned;
 }
 
 /** BEGIN TEST CASES **/
@@ -351,6 +334,39 @@ var testCases = [
 						"tag": "Workforce"
 					}
 				],
+				"notes": [],
+				"seeAlso": []
+			}
+		]
+	},
+	{
+		"type": "web",
+		"url": "https://www.reuters.com/legal/litigation/dc-circuit-overturns-fda-ban-shock-device-disabled-students-2021-07-06/",
+		"items": [
+			{
+				"itemType": "newspaperArticle",
+				"title": "D.C. Circuit overturns FDA ban on shock device for disabled students",
+				"creators": [
+					{
+						"firstName": "Brendan",
+						"lastName": "Pierson",
+						"creatorType": "author"
+					}
+				],
+				"date": "2021-07-07T14:12:52Z",
+				"abstractNote": "A federal appeals court has overturned the Food and Drug Administration's ban on the use of electric shock devices to correct aggressive or self-harming behavior in adults and children at a Massachusetts school for the developmentally disabled.",
+				"language": "en",
+				"libraryCatalog": "www.reuters.com",
+				"publicationTitle": "Reuters",
+				"section": "Litigation",
+				"url": "https://www.reuters.com/legal/litigation/dc-circuit-overturns-fda-ban-shock-device-disabled-students-2021-07-06/",
+				"attachments": [
+					{
+						"title": "Snapshot",
+						"mimeType": "text/html"
+					}
+				],
+				"tags": [],
 				"notes": [],
 				"seeAlso": []
 			}
