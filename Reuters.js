@@ -9,7 +9,7 @@
 	"inRepository": true,
 	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2021-07-05 16:50:37"
+	"lastUpdated": "2021-08-16 19:30:29"
 }
 
 /*
@@ -91,7 +91,7 @@ function scrape(doc, url) {
 
 	translator.setHandler('itemDone', function (obj, item) {
 		item.creators = [];
-		let authors = doc.querySelectorAll('[rel="author"]');
+		let authors = doc.querySelectorAll('[rel="author"] , a[class*="Byline-author"]');
 		for (let author of authors) {
 			item.creators.push(authorFix(author.textContent));
 		}
@@ -246,6 +246,88 @@ var testCases = [
 					}
 				],
 				"tags": [],
+				"notes": [],
+				"seeAlso": []
+			}
+		]
+	},
+	{
+		"type": "web",
+		"url": "https://www.reuters.com/article/us-germany-wages-idUSKBN2BM1PY",
+		"items": [
+			{
+				"itemType": "newspaperArticle",
+				"title": "A raise or a four-day week; biggest German union seals new deal",
+				"creators": [],
+				"date": "2021-03-30T12:48:00Z",
+				"abstractNote": "Germany's largest trade union, IG Metall, agreed a 2.3% wage increase, to be paid either in full or as part of a switch to a four-day week, in a key industrial region, setting the benchmark for 3.9 million metal and engineering workers nationwide.",
+				"language": "en",
+				"libraryCatalog": "www.reuters.com",
+				"publicationTitle": "Reuters",
+				"section": "reboot-live",
+				"url": "https://www.reuters.com/article/us-germany-wages-idUSKBN2BM1PY",
+				"attachments": [
+					{
+						"title": "Snapshot",
+						"mimeType": "text/html"
+					}
+				],
+				"tags": [
+					{
+						"tag": "Auto & Truck Manufacturers (NEC) (TRBC level 5)"
+					},
+					{
+						"tag": "Auto & Truck Manufacturers (TRBC level 4)"
+					},
+					{
+						"tag": "Coronavirus"
+					},
+					{
+						"tag": "East European Countries"
+					},
+					{
+						"tag": "Europe"
+					},
+					{
+						"tag": "GERMANY"
+					},
+					{
+						"tag": "Germany"
+					},
+					{
+						"tag": "Industrials (TRBC level 1)"
+					},
+					{
+						"tag": "Iron"
+					},
+					{
+						"tag": "Job Cuts"
+					},
+					{
+						"tag": "Metals & Mining (TRBC level 3)"
+					},
+					{
+						"tag": "Reuters Top News"
+					},
+					{
+						"tag": "Steel Mills & Foundries (TRBC level 5)"
+					},
+					{
+						"tag": "US"
+					},
+					{
+						"tag": "WAGES"
+					},
+					{
+						"tag": "Western Europe"
+					},
+					{
+						"tag": "Workers Pay"
+					},
+					{
+						"tag": "Workforce"
+					}
+				],
 				"notes": [],
 				"seeAlso": []
 			}
