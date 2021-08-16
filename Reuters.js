@@ -136,7 +136,18 @@ var testCases = [
 			{
 				"itemType": "newspaperArticle",
 				"title": "Europe could be in worst hour since WW2: Merkel",
-				"creators": [],
+				"creators": [
+					{
+						"firstName": "James",
+						"lastName": "Mackenzie",
+						"creatorType": "author"
+					},
+					{
+						"firstName": "Barry",
+						"lastName": "Moody",
+						"creatorType": "author"
+					}
+				],
 				"date": "2011-11-14T00:16:09Z",
 				"abstractNote": "Prime Minister-designate Mario Monti meets the leaders of Italy's biggest two parties on Tuesday to discuss the \"many sacrifices\" needed to reverse a collapse in market confidence that is driving an ever deepening euro zone debt crisis.",
 				"language": "en",
@@ -233,8 +244,9 @@ var testCases = [
 						"creatorType": "author"
 					}
 				],
-				"date": "2021-07-05T10:00:00Z",
+				"date": "2021-07-05T11:00:20Z",
 				"abstractNote": "Maxima Ccalla, 60, an indigenous Quechua woman, has spent her life tilling the harsh soil in Peru's Andean highlands, resigned to a fate far removed from the vast riches buried deep beneath her feet in seams of copper, zinc and gold.",
+				"language": "en",
 				"libraryCatalog": "www.reuters.com",
 				"publicationTitle": "Reuters",
 				"section": "Americas",
@@ -258,7 +270,18 @@ var testCases = [
 			{
 				"itemType": "newspaperArticle",
 				"title": "A raise or a four-day week; biggest German union seals new deal",
-				"creators": [],
+				"creators": [
+					{
+						"firstName": "Tom",
+						"lastName": "Käckenhoff",
+						"creatorType": "author"
+					},
+					{
+						"firstName": "Matthias",
+						"lastName": "Inverardi",
+						"creatorType": "author"
+					}
+				],
 				"date": "2021-03-30T12:48:00Z",
 				"abstractNote": "Germany's largest trade union, IG Metall, agreed a 2.3% wage increase, to be paid either in full or as part of a switch to a four-day week, in a key industrial region, setting the benchmark for 3.9 million metal and engineering workers nationwide.",
 				"language": "en",
